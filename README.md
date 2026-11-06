@@ -3,6 +3,15 @@
 macOS 终端里的 TUI 音乐播放器。指定一个本地目录，读取曲目、作者、专辑与内嵌封面，在支持的终端里通过
 Kitty 图形协议显示封面图片，并附带一条 FFT 频谱。
 
+![ymp 播放中的界面](docs/screenshot.png)
+
+`ymp ~/Documents/music/piano_BenTenz --play` 播放时的样子：左侧曲目列表，右侧专辑封面、
+FFT 频谱与曲目信息，底部是播放进度和按键提示。
+
+> 窗口的背景图来自终端自身的背景设置，不是 ymp 绘制的。
+
+同一界面的纯文本布局示意（88 列）：
+
 ```
 ╭─ ymp  ~/Documents/music/piano_BenTenz ─────────── 37 tracks · 1 album · 4:35:34 ─╮
 │  1 A Journey                                              3:27  ┌──────────────┐  │
@@ -33,6 +42,7 @@ Kitty 图形协议显示封面图片，并附带一条 FFT 频谱。
 - 封面优先取内嵌图（ID3 APIC / FLAC picture / MP4 covr），没有则找同目录的 `cover.jpg`、`folder.png` 等
 - 三种封面后端：Kitty 图形协议、iTerm2 内联图片、半块字符（`▀`，双像素/字符）
 - 实时频谱：音频回调取样，1024 点 FFT，16 段对数频带
+- 标题栏汇总曲目数、专辑数与总时长；当前曲目高亮并显示已播进度
 - 不依赖 ffmpeg：Symphonia 解码 + CoreAudio（cpal）输出
 
 支持格式取决于 Symphonia：mp3 / flac / m4a(AAC) / ogg / opus / wav / aiff 等，不支持 ALAC。
@@ -114,7 +124,7 @@ ymp ~/Music --mode=one    # 长写法，等价
 | `-g, --graphics` | `auto` `kitty` `iterm` `blocks` `off` | `auto` | 封面后端 |
 | `--cell-aspect` | 浮点数，约 1.2~4.0 | 自动探测 | 单元格高宽比，探测失败时使用 |
 | `--probe` | 开关 | — | 打印终端能力后退出，不进入界面 |
-| `--lang` | `cn` `en` | `cn` | 界面语言，影响帮助、版本、提示与报错；`--language` 同义 |
+| `--lang` | `cn` `en` | `cn` | 界面语言，影响帮助、版本、提示与报错；单独使用时只写入配置并退出；`--language` 同义 |
 | `-h` | | | 简洁说明，每个参数一行 |
 | `--help` | | | 完整说明：取值、默认值、示例、退出码 |
 | `-v` / `-V` | | | 一行版本号 |
