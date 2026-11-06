@@ -1,0 +1,39 @@
+[package]
+name = "ymp"
+version = "0.0.1"
+edition = "2021"
+license = "MIT"
+authors = ["masakiyuizzz"]
+repository = "https://github.com/masakiyuizzz/ymp"
+readme = "README.md"
+exclude = ["/.workbuddy", "/dist"]
+keywords = ["tui", "music", "audio", "terminal", "kitty"]
+categories = ["command-line-utilities", "multimedia::audio"]
+rust-version = "1.75"
+description = "终端音乐播放器：读标签与内嵌封面，用 Kitty 图形协议画真图 · TUI music player for the terminal"
+
+[[bin]]
+name = "ymp"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+base64 = "0.22"
+clap = { version = "4", features = ["derive"] }
+cpal = "0.15"
+crossterm = "0.28"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp"] }
+libc = "0.2"
+lofty = "0.22"
+rand = "0.9"
+ratatui = "0.29"
+rustfft = "6.4.1"
+symphonia = { version = "0.5", features = ["all"] }
+unicode-width = "0.2"
+walkdir = "2"
+
+[profile.release]
+strip = true
+opt-level = 3
+lto = true
+codegen-units = 1
