@@ -245,9 +245,11 @@ ymp <目录> --render       # 离屏渲染界面为文本（调整布局时用�
 | 方式 | 命令 | 前提 |
 | --- | --- | --- |
 | 免编译包 | 解开 `ymp-<版本>-<arch>.tar.gz`，`cp ymp ~/.local/bin/`，再 `xattr -c` | 无 |
-| crates.io | `cargo install ymp` | 已安装 Rust |
-| 源码仓库 | `cargo install --git https://github.com/<仓库地址>` | 已安装 Rust |
+| 源码仓库 | `cargo install --git https://github.com/masakiyuizzz/ymp` | 已安装 Rust |
 | 自行构建 | `./install.sh` | 已安装 Rust |
+| crates.io | `cargo install ymp` | 已安装 Rust（尚未发布，暂不可用） |
+
+> 目前只在 GitHub 上发布，`cargo install ymp` 还不可用；请用上面的 git 形式。
 
 打包：
 
